@@ -10,8 +10,11 @@ public class Message {
 		
 		// TODO - START
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.constructor("Message"));
+		if (data != null && data.length <= 127 ) {
+			this.data = data;
+		} else {
+			throw new UnsupportedOperationException(TODO.constructor("Byte array is null or too long."));
+		}
 			
 		// TODO - END
 	}

@@ -25,15 +25,22 @@ public class Controller  {
 		RPCClientStopStub stopdisplay = new RPCClientStopStub(displayclient);
 		RPCClientStopStub stopsensor = new RPCClientStopStub(sensorclient);
 				
-		// TODO - START
+		display = new DisplayStub(displayclient);
+		sensor = new SensorStub(sensorclient);
 		
-		// create local display and sensor stub objects
-		// connect to sensor and display RPC servers
-			
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		displayclient.connect();
+		sensorclient.connect();
 		
-		// TODO - END
+		for(int i = 0; i < N; i++) {
+			int temp = sensor.read();
+			try {
+				Thread.sleep(1000);
+			} catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+			display.write(""+ temp);
+		}
+		
 		
 		stopdisplay.stop();
 		stopsensor.stop();
